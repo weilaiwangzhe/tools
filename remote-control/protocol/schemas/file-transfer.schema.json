@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "remote-control/file-transfer-v1",
+  "type": "object",
+  "required": ["protocolVersion", "requestId", "type", "fileId"],
+  "properties": {
+    "protocolVersion": { "const": 1 },
+    "requestId": { "type": "string", "minLength": 1 },
+    "type": { "enum": ["offer", "accept", "chunk", "ack", "complete", "cancel", "error"] },
+    "fileId": { "type": "string", "minLength": 1 },
+    "name": { "type": "string" },
+    "mime": { "type": "string" },
+    "size": { "type": "integer", "minimum": 0 },
+    "offset": { "type": "integer", "minimum": 0 },
+    "length": { "type": "integer", "minimum": 0 },
+    "sha256": { "type": "string", "pattern": "^[0-9a-fA-F]{64}$" },
+    "data": { "type": "string" }
+  },
+  "additionalProperties": false
+}
